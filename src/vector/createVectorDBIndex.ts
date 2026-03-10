@@ -20,8 +20,8 @@ export async function initializeIndex() {
       },
     });
 
-    console.log('✅ Pinecone index created');
+    console.log('Pinecone index created');
   } else {
-    console.log('✅ Pinecone index already exists');
+    console.log(' Pinecone index already exists');
   }
 }

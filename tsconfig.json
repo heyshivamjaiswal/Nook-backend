@@ -4,6 +4,7 @@
     "target": "esnext",
     // Remove or expand the types array to allow auto-discovery
     "types": ["node"],
+    "allowSyntheticDefaultImports": true,
 
     "esModuleInterop": true,
     "skipLibCheck": true,

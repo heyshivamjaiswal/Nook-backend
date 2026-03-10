@@ -1,6 +1,7 @@
 import type { Request, Response } from 'express';
 import { prisma } from '../db/prisma.js';
 import { error } from 'node:console';
+import { processBookmarks } from '../services/pipeline/processBookmark.js';
 
 export async function addBookmark(req: Request, res: Response) {
   try {
@@ -20,6 +21,10 @@ export async function addBookmark(req: Request, res: Response) {
         type: type ?? 'article',
       },
     });
+
+    //Run Ingestion pipeline
+    await processBookmarks(bookmark.id, userId, url);
+
     res.json({
       success: true,
       bookmark,

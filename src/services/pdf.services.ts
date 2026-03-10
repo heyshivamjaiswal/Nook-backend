@@ -1,4 +1,4 @@
-import pdf from 'pdf-parse';
+import pdfParse from 'pdf-parse';
 import axios from 'axios';
 
 export async function loadPDF(url: string) {
@@ -6,8 +6,7 @@ export async function loadPDF(url: string) {
     responseType: 'arraybuffer',
   });
 
-  const data = await pdf(response.data);
-
+  const data = await pdfParse(response.data);
   return {
     title: 'PDF Document',
     text: data.text,

@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express, { type Request, type Response } from 'express';
 import cors from 'cors';
-import chatRoutes from './routes//chat.routes.js';
+import chatRoutes from './routes/chat.routes.js';
 import bookmarkRoutes from './routes/bookmar.routes.js';
 import { initializeIndex } from './vector/createVectorDBIndex.js';
 
@@ -12,6 +12,10 @@ app.use(express.json());
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Server is running');
+});
+
+app.get('/health', (req: Request, res: Response) => {
+  res.json({ status: 'ok' });
 });
 
 app.use('/api', chatRoutes);

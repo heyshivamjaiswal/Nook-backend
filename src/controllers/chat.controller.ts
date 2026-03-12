@@ -13,18 +13,19 @@ export async function chatWithBookmark(req: Request, res: Response) {
       });
     }
 
-    //1. Retrieve relevent chunks
+    // 1️ Retrieve relevant chunks
     const matches = await searchChunks(question, bookmarkId);
 
-    //2.Build context from retrieved chunks
-    const context = buildContext(matches);
+    // 2️ Build context + sources
+    const { context, sources } = buildContext(matches);
 
-    //ask llm
+    // 3️ Ask LLM
     const answer = await askLLM(context, question);
 
     res.json({
       success: true,
       answer,
+      sources,
     });
   } catch (err) {
     res.status(500).json({
